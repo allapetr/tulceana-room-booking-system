@@ -1,0 +1,33 @@
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+        <title>Manage Tulceana {% block title %}{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='login.css') }}">
+        
+        <script>
+            function checkbox_checked() {
+                for (i = 1; i <= 20; i++)
+                {
+                    if (document.getElementById("checkbox_" + i).checked == true) {
+                        document.getElementById("check_in_date_" + i).style.visibility = "visible";
+                        document.getElementById("check_out_date_" + i).style.visibility = "visible";
+                    }
+                    else {
+                        document.getElementById("check_in_date_" + i).style.visibility = "hidden";
+                        document.getElementById("check_out_date_" + i).style.visibility = "hidden";
+                    }
+                         
+                }     
+            }
+        </script>
+    </head>
+    <body>
+        <main>
+            {% block main %}{% endblock %}
+        </main>
+    </body>
+    
+</html>

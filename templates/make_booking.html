@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Make booking
+{% endblock %}
+
+{% block main %}
+
+<div class="container">
+    <form action="/make_booking" method="post">
+        <div class="title">New booking</div>
+        <div class="input-box underline">
+            <input name="first_name" type="text" placeholder="First name" required>
+            <div class="underline"></div>
+        </div>
+        <div class="input-box">
+            <input name="last_name" type="text" placeholder="Last name" required>
+            <div class="underline"></div>
+        </div>
+        <div class="input-box">
+            <input name="city" type="text" placeholder="City" required>
+            <div class="underline"></div>
+        </div>
+        <div class="input-box">
+            <input name="phone" type="tel" placeholder="Phone number" required>
+            <div class="underline"></div>
+        </div>
+    
+        <div>
+            <label class="titles">Number of guests</label>
+            <select name="number_of_guests">
+                <option selected disabled value="">Choose...</option>
+                {% for x in range(1, 10) %}
+                    <option value="{{ x }}">{{ x }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div>
+            <label class="titles">Select room</label>
+            <ul style="list-style: none;">
+                {% for room_type in room_type_rows %}
+    
+                <li>
+                    {{ room_type[1] }}<br>
+                    
+                    {% for room_number in room_number_rows %} 
+                    
+                        {% if room_type[0] == room_number[2] %}
+                            <input onclick="checkbox_checked()" name="rooms" type="checkbox" value="{{ room_number[0] }}" id="checkbox_{{ room_number[0] }}">{{ room_number[1] }}</input>   
+                            <div class="check">
+                                <input id="check_in_date_{{ room_number[0] }}" name="check_in_date_{{ room_number[0] }}" type="text" placeholder="Check-in date 00/00/0000" style="visibility:hidden">
+                            </div>
+    
+                            <div class="check">
+                                <input id="check_out_date_{{ room_number[0] }}" name="check_out_date_{{ room_number[0] }}" type="text" placeholder="Check-out date 00/00/0000" style="visibility:hidden">
+                            </div>
+    
+                        {% endif %}  
+                    {% endfor %}
+                </li>
+    
+                {% endfor %}
+    
+            </ul>
+        </div>
+        <div class="input-box button">
+            <input type="submit" name="" value="Book room">
+        </div>
+    </form>
+</div>
+
+    
+
+
+{% endblock %}
